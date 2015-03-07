@@ -22,4 +22,13 @@ public class SimpleDiscountsTest {
 
 		Assert.assertEquals("8 * 2 * 0.95", price);
 	}
+
+	@Test
+	public void givenBasketWith3DifferentBooksApply10PercentDiscount() {
+		basket = new int[] { 0, 2, 4 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8 * 3 * 0.9", price);
+	}
 }
