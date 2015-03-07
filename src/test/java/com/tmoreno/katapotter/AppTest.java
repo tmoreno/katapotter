@@ -31,4 +31,40 @@ public class AppTest {
 
 		Assert.assertEquals("8", price);
 	}
+
+	@Test
+	public void givenBasketWithBook1PriceIs8() {
+		basket = new int[] { 1 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8", price);
+	}
+
+	@Test
+	public void givenBasketWithBook2PriceIs8() {
+		basket = new int[] { 2 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8", price);
+	}
+
+	@Test
+	public void givenBasketWithBook3PriceIs8() {
+		basket = new int[] { 3 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8", price);
+	}
+
+	@Test
+	public void givenBasketWithBook4PriceIs8() {
+		basket = new int[] { 4 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8", price);
+	}
 }
