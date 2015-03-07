@@ -10,7 +10,13 @@ public class PriceCalculator {
 		} else if (basket.length == 1) {
 			return BASE_PRICE;
 		} else {
-			return BASE_PRICE + " * " + basket.length;
+			String result = BASE_PRICE + " * " + basket.length;
+
+			if (basket[0] != basket[1]) {
+				result += " * 0.95";
+			}
+
+			return result;
 		}
 	}
 
