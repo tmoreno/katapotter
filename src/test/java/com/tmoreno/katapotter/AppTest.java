@@ -7,6 +7,7 @@ import org.junit.Test;
 public class AppTest {
 
 	private PriceCalculator calculator;
+	private int[] basket;
 
 	@Before
 	public void setUp() {
@@ -15,13 +16,19 @@ public class AppTest {
 
 	@Test
 	public void givenEmptyBasketPriceIs0() {
-		String price = calculator.calculate(new int[] {});
+		basket = new int[] {};
+
+		String price = calculator.calculate(basket);
+
 		Assert.assertEquals("0", price);
 	}
 
 	@Test
 	public void givenBasketWithBook0PriceIs8() {
-		String price = calculator.calculate(new int[] { 0 });
+		basket = new int[] { 0 };
+
+		String price = calculator.calculate(basket);
+
 		Assert.assertEquals("8", price);
 	}
 }
