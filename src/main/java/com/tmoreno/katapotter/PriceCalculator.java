@@ -3,7 +3,11 @@ package com.tmoreno.katapotter;
 public class PriceCalculator {
 
 	public String calculate(int[] basket) {
-		return "0";
+		if (basket.length == 0) {
+			return "0";
+		} else {
+			return "8";
+		}
 	}
 
 }
