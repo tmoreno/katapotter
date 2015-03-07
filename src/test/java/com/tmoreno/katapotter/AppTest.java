@@ -11,4 +11,11 @@ public class AppTest {
 		String price = calculator.calculate(new int[] {});
 		Assert.assertEquals("0", price);
 	}
+
+	@Test
+	public void givenBagWithBook0PriceIs8() {
+		PriceCalculator calculator = new PriceCalculator();
+		String price = calculator.calculate(new int[] { 0 });
+		Assert.assertEquals("8", price);
+	}
 }
