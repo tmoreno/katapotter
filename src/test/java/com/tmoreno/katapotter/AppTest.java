@@ -14,13 +14,13 @@ public class AppTest {
 	}
 
 	@Test
-	public void givenEmptyBagPriceIs0() {
+	public void givenEmptyBasketPriceIs0() {
 		String price = calculator.calculate(new int[] {});
 		Assert.assertEquals("0", price);
 	}
 
 	@Test
-	public void givenBagWithBook0PriceIs8() {
+	public void givenBasketWithBook0PriceIs8() {
 		String price = calculator.calculate(new int[] { 0 });
 		Assert.assertEquals("8", price);
 	}
