@@ -67,4 +67,13 @@ public class BaseTest {
 
 		Assert.assertEquals("8", price);
 	}
+
+	@Test
+	public void givenBasketWith2Books0PriceIs16() {
+		basket = new int[] { 0, 0 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8 * 2", price);
+	}
 }
