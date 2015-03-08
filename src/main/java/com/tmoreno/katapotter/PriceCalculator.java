@@ -5,6 +5,8 @@ public class PriceCalculator {
 	private static final String BASE_PRICE = "8";
 	private static final String DISCOUNT_5_PERCENT = "0.95";
 	private static final String DISCOUNT_10_PERCENT = "0.9";
+	private static final String DISCOUNT_20_PERCENT = "0.8";
+	private static final String DISCOUNT_25_PERCENT = "0.75";
 
 	public String calculate(int[] basket) {
 		if (basket.length == 0) {
@@ -28,6 +30,14 @@ public class PriceCalculator {
 
 			case 2:
 				result += " * " + DISCOUNT_10_PERCENT;
+				break;
+
+			case 3:
+				result += " * " + DISCOUNT_20_PERCENT;
+				break;
+
+			case 4:
+				result += " * " + DISCOUNT_25_PERCENT;
 				break;
 
 			default:
