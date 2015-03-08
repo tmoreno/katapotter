@@ -28,46 +28,54 @@ public class PriceCalculator {
 				}
 			}
 
-			String result = "";
-			if (booksWithoutDiscount == 1) {
-				result += BASE_PRICE;
-			} else if (booksWithoutDiscount > 1) {
-				result += BASE_PRICE + " * " + booksWithoutDiscount;
-			}
-
-			if (booksWithDiscount > 1) {
-				if (booksWithoutDiscount > 0) {
-					result += " + (";
-				}
-
-				result += BASE_PRICE + " * " + booksWithDiscount;
-				switch (differentBooks) {
-				case 1:
-					result += " * " + DISCOUNT_5_PERCENT;
-					break;
-
-				case 2:
-					result += " * " + DISCOUNT_10_PERCENT;
-					break;
-
-				case 3:
-					result += " * " + DISCOUNT_20_PERCENT;
-					break;
-
-				case 4:
-					result += " * " + DISCOUNT_25_PERCENT;
-					break;
-
-				default:
-					break;
-				}
-
-				if (booksWithoutDiscount > 0) {
-					result += ")";
-				}
-			}
-
-			return result;
+			return result(booksWithDiscount, booksWithoutDiscount,
+					differentBooks);
 		}
+	}
+
+	private String result(int booksWithDiscount, int booksWithoutDiscount,
+			int differentBooks) {
+
+		String result = "";
+
+		if (booksWithoutDiscount == 1) {
+			result += BASE_PRICE;
+		} else if (booksWithoutDiscount > 1) {
+			result += BASE_PRICE + " * " + booksWithoutDiscount;
+		}
+
+		if (booksWithDiscount > 1) {
+			if (booksWithoutDiscount > 0) {
+				result += " + (";
+			}
+
+			result += BASE_PRICE + " * " + booksWithDiscount;
+			switch (differentBooks) {
+			case 1:
+				result += " * " + DISCOUNT_5_PERCENT;
+				break;
+
+			case 2:
+				result += " * " + DISCOUNT_10_PERCENT;
+				break;
+
+			case 3:
+				result += " * " + DISCOUNT_20_PERCENT;
+				break;
+
+			case 4:
+				result += " * " + DISCOUNT_25_PERCENT;
+				break;
+
+			default:
+				break;
+			}
+
+			if (booksWithoutDiscount > 0) {
+				result += ")";
+			}
+		}
+
+		return result;
 	}
 }
