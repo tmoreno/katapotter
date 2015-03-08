@@ -14,38 +14,60 @@ public class PriceCalculator {
 		} else if (basket.length == 1) {
 			return BASE_PRICE;
 		} else {
-			String result = BASE_PRICE + " * " + basket.length;
+			int booksWithDiscount = 1;
+			int booksWithoutDiscount = 1;
 
 			int differentBooks = 0;
 			for (int i = 1; i < basket.length; i++) {
 				if (basket[i] != basket[i - 1]) {
 					differentBooks++;
+					booksWithDiscount++;
+					booksWithoutDiscount--;
+				} else {
+					booksWithoutDiscount++;
 				}
 			}
 
-			switch (differentBooks) {
-			case 1:
-				result += " * " + DISCOUNT_5_PERCENT;
-				break;
+			String result = "";
+			if (booksWithoutDiscount == 1) {
+				result += BASE_PRICE;
+			} else if (booksWithoutDiscount > 1) {
+				result += BASE_PRICE + " * " + booksWithoutDiscount;
+			}
 
-			case 2:
-				result += " * " + DISCOUNT_10_PERCENT;
-				break;
+			if (booksWithDiscount > 1) {
+				if (booksWithoutDiscount > 0) {
+					result += " + (";
+				}
 
-			case 3:
-				result += " * " + DISCOUNT_20_PERCENT;
-				break;
+				result += BASE_PRICE + " * " + booksWithDiscount;
+				switch (differentBooks) {
+				case 1:
+					result += " * " + DISCOUNT_5_PERCENT;
+					break;
 
-			case 4:
-				result += " * " + DISCOUNT_25_PERCENT;
-				break;
+				case 2:
+					result += " * " + DISCOUNT_10_PERCENT;
+					break;
 
-			default:
-				break;
+				case 3:
+					result += " * " + DISCOUNT_20_PERCENT;
+					break;
+
+				case 4:
+					result += " * " + DISCOUNT_25_PERCENT;
+					break;
+
+				default:
+					break;
+				}
+
+				if (booksWithoutDiscount > 0) {
+					result += ")";
+				}
 			}
 
 			return result;
 		}
 	}
-
 }
