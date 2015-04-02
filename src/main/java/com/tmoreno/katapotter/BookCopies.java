@@ -6,40 +6,40 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class BookStack {
+public class BookCopies {
 
-	private Map<Integer, Integer> stack;
+	private Map<Integer, Integer> copies;
 
-	public BookStack() {
-		stack = new HashMap<>();
+	public BookCopies() {
+		copies = new HashMap<>();
 	}
 
 	public boolean isEmpty() {
-		return stack.isEmpty();
+		return copies.isEmpty();
 	}
 
-	public void addBooks(int[] books) {
+	public void addCopies(int[] books) {
 		for (int book : books) {
 			addCopy(book);
 		}
 	}
 
 	private void addCopy(int book) {
-		Integer numBooks = stack.get(book);
+		Integer numBooks = copies.get(book);
 
 		if (numBooks == null) {
-			stack.put(book, 1);
+			copies.put(book, 1);
 		} else {
-			stack.put(book, numBooks.intValue() + 1);
+			copies.put(book, numBooks.intValue() + 1);
 		}
 	}
 
 	public void removeOneCopyOfEachBook(List<Integer> books) {
 		for (int book : books) {
-			if (stack.get(book) == 1) {
-				stack.remove(book);
+			if (copies.get(book) == 1) {
+				copies.remove(book);
 			} else {
-				stack.put(book, stack.get(book) - 1);
+				copies.put(book, copies.get(book) - 1);
 			}
 		}
 	}
@@ -64,10 +64,10 @@ public class BookStack {
 	}
 
 	private Set<Integer> getDifferentBooks() {
-		return stack.keySet();
+		return copies.keySet();
 	}
 
 	private Integer getNumberOfCopies(Integer book) {
-		return stack.get(book);
+		return copies.get(book);
 	}
 }

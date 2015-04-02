@@ -17,15 +17,15 @@ public class PriceCalculator {
 		} else if (basket.length == 1) {
 			return BASE_PRICE;
 		} else {
-			BookStack bookStack = new BookStack();
-			bookStack.addBooks(basket);
+			BookCopies bookCopies = new BookCopies();
+			bookCopies.addCopies(basket);
 
 			List<Integer> books;
 			List<List<Integer>> groups = new ArrayList<>();
-			while (!bookStack.isEmpty()) {
-				books = bookStack.getBooksWithMaxCopies();
+			while (!bookCopies.isEmpty()) {
+				books = bookCopies.getBooksWithMaxCopies();
 
-				bookStack.removeOneCopyOfEachBook(books);
+				bookCopies.removeOneCopyOfEachBook(books);
 
 				groups.add(books);
 			}
