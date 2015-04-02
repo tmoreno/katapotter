@@ -15,11 +15,11 @@ public class BookStack {
 
 	public void addBooks(int[] books) {
 		for (int book : books) {
-			addBook(book);
+			addCopy(book);
 		}
 	}
 
-	public void addBook(int book) {
+	public void addCopy(int book) {
 		Integer numBooks = stack.get(book);
 
 		if (numBooks == null) {
@@ -29,7 +29,7 @@ public class BookStack {
 		}
 	}
 
-	public void removeBooks(List<Integer> books) {
+	public void removeOneCopyOfEachBook(List<Integer> books) {
 		for (int book : books) {
 			if (stack.get(book) == 1) {
 				stack.remove(book);

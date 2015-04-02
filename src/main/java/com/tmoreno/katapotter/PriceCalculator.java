@@ -25,7 +25,7 @@ public class PriceCalculator {
 			while (!bookStack.isEmpty()) {
 				books = getBooksWithMaxCopies(bookStack);
 
-				bookStack.removeBooks(books);
+				bookStack.removeOneCopyOfEachBook(books);
 
 				groups.add(books);
 			}
