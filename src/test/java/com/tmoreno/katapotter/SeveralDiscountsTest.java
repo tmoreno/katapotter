@@ -40,4 +40,13 @@ public class SeveralDiscountsTest {
 
 		Assert.assertEquals("(8 * 4 * 0.8) + (8 * 2 * 0.95)", price);
 	}
+
+	@Test
+	public void applyMaxDiscount() {
+		basket = new int[] { 0, 1, 1, 2, 3, 4 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("8 + (8 * 5 * 0.75)", price);
+	}
 }
