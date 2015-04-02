@@ -29,12 +29,14 @@ public class PriceCalculator {
 
 				group = new ArrayList<>();
 				for (int book : bookStack.getDifferentBooks()) {
-					if (bookStack.getNumberOfCopies(book) == maxBooks) {
+					int numberOfCopies = bookStack.getNumberOfCopies(book);
+
+					if (numberOfCopies == maxBooks) {
 						group.add(book);
-					} else if (bookStack.getNumberOfCopies(book) > maxBooks) {
+					} else if (numberOfCopies > maxBooks) {
 						group = new ArrayList<>();
 						group.add(book);
-						maxBooks = bookStack.getNumberOfCopies(book);
+						maxBooks = numberOfCopies;
 					}
 				}
 
