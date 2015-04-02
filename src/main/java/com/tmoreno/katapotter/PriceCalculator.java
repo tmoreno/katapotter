@@ -20,31 +20,37 @@ public class PriceCalculator {
 			BookStack bookStack = new BookStack();
 			bookStack.addBooks(basket);
 
-			List<Integer> group;
+			List<Integer> books;
 			List<List<Integer>> groups = new ArrayList<>();
 			while (!bookStack.isEmpty()) {
-				int maxBooks = 1;
+				books = getBooksWithMaxCopies(bookStack);
 
-				group = new ArrayList<>();
-				for (int book : bookStack.getDifferentBooks()) {
-					int numberOfCopies = bookStack.getNumberOfCopies(book);
+				bookStack.removeBooks(books);
 
-					if (numberOfCopies == maxBooks) {
-						group.add(book);
-					} else if (numberOfCopies > maxBooks) {
-						group = new ArrayList<>();
-						group.add(book);
-						maxBooks = numberOfCopies;
-					}
-				}
-
-				bookStack.removeBooks(group);
-
-				groups.add(group);
+				groups.add(books);
 			}
 
 			return toString(groups);
 		}
+	}
+
+	private List<Integer> getBooksWithMaxCopies(BookStack bookStack) {
+		int maxCopies = 1;
+		List<Integer> books = new ArrayList<>();
+
+		for (int book : bookStack.getDifferentBooks()) {
+			int numberOfCopies = bookStack.getNumberOfCopies(book);
+
+			if (numberOfCopies == maxCopies) {
+				books.add(book);
+			} else if (numberOfCopies > maxCopies) {
+				books = new ArrayList<>();
+				books.add(book);
+				maxCopies = numberOfCopies;
+			}
+		}
+
+		return books;
 	}
 
 	private String toString(List<List<Integer>> groups) {
