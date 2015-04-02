@@ -12,8 +12,8 @@ public enum Discount {
 			}
 		}
 	},
-	DISCOUNT_5_PERCENT(2, "0.95"), DISCOUNT_10_PERCENT(3, "0.9"), DISCOUNT_20_PERCENT(
-			4, "0.8"), DISCOUNT_25_PERCENT(5, "0.75");
+	DISCOUNT_25_PERCENT(5, "0.75"), DISCOUNT_20_PERCENT(4, "0.8"), DISCOUNT_10_PERCENT(
+			3, "0.9"), DISCOUNT_5_PERCENT(2, "0.95");
 
 	public static final String BASE_PRIZE = "8";
 
