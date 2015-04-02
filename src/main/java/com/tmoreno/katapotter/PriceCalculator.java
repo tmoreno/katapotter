@@ -23,7 +23,7 @@ public class PriceCalculator {
 			List<Integer> books;
 			List<List<Integer>> groups = new ArrayList<>();
 			while (!bookStack.isEmpty()) {
-				books = getBooksWithMaxCopies(bookStack);
+				books = bookStack.getBooksWithMaxCopies();
 
 				bookStack.removeOneCopyOfEachBook(books);
 
@@ -32,25 +32,6 @@ public class PriceCalculator {
 
 			return toString(groups);
 		}
-	}
-
-	private List<Integer> getBooksWithMaxCopies(BookStack bookStack) {
-		int maxCopies = 1;
-		List<Integer> books = new ArrayList<>();
-
-		for (int book : bookStack.getDifferentBooks()) {
-			int numberOfCopies = bookStack.getNumberOfCopies(book);
-
-			if (numberOfCopies == maxCopies) {
-				books.add(book);
-			} else if (numberOfCopies > maxCopies) {
-				books = new ArrayList<>();
-				books.add(book);
-				maxCopies = numberOfCopies;
-			}
-		}
-
-		return books;
 	}
 
 	private String toString(List<List<Integer>> groups) {

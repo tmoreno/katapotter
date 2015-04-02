@@ -1,5 +1,6 @@
 package com.tmoreno.katapotter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,13 +14,17 @@ public class BookStack {
 		stack = new HashMap<>();
 	}
 
+	public boolean isEmpty() {
+		return stack.isEmpty();
+	}
+
 	public void addBooks(int[] books) {
 		for (int book : books) {
 			addCopy(book);
 		}
 	}
 
-	public void addCopy(int book) {
+	private void addCopy(int book) {
 		Integer numBooks = stack.get(book);
 
 		if (numBooks == null) {
@@ -39,15 +44,30 @@ public class BookStack {
 		}
 	}
 
-	public Set<Integer> getDifferentBooks() {
+	public List<Integer> getBooksWithMaxCopies() {
+		int maxCopies = 1;
+		List<Integer> books = new ArrayList<>();
+
+		for (int book : getDifferentBooks()) {
+			int numberOfCopies = getNumberOfCopies(book);
+
+			if (numberOfCopies == maxCopies) {
+				books.add(book);
+			} else if (numberOfCopies > maxCopies) {
+				books = new ArrayList<>();
+				books.add(book);
+				maxCopies = numberOfCopies;
+			}
+		}
+
+		return books;
+	}
+
+	private Set<Integer> getDifferentBooks() {
 		return stack.keySet();
 	}
 
-	public Integer getNumberOfCopies(Integer book) {
+	private Integer getNumberOfCopies(Integer book) {
 		return stack.get(book);
-	}
-
-	public boolean isEmpty() {
-		return stack.isEmpty();
 	}
 }
