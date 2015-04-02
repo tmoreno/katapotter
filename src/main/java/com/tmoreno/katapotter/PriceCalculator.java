@@ -4,13 +4,11 @@ import java.util.List;
 
 public class PriceCalculator {
 
-	private static final String BASE_PRICE = "8";
-
 	public String calculate(int[] basket) {
 		if (basket.length == 0) {
 			return "0";
 		} else if (basket.length == 1) {
-			return BASE_PRICE;
+			return Discount.BASE_PRIZE;
 		} else {
 			BookCopies bookCopies = new BookCopies();
 			bookCopies.addCopies(basket);
