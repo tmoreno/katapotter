@@ -31,4 +31,13 @@ public class SeveralDiscountsTest {
 
 		Assert.assertEquals("2 * (8 * 2 * 0.95)", price);
 	}
+
+	@Test
+	public void applyTwoDiscountsWithOrder() {
+		basket = new int[] { 0, 0, 1, 2, 2, 3 };
+
+		String price = calculator.calculate(basket);
+
+		Assert.assertEquals("(8 * 4 * 0.8) + (8 * 2 * 0.95)", price);
+	}
 }
