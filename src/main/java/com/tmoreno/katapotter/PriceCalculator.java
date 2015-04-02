@@ -1,9 +1,7 @@
 package com.tmoreno.katapotter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PriceCalculator {
 
@@ -13,17 +11,15 @@ public class PriceCalculator {
 	private static final String DISCOUNT_20_PERCENT = "0.8";
 	private static final String DISCOUNT_25_PERCENT = "0.75";
 
-	Map<Integer, Integer> bookStack;
-
 	public String calculate(int[] basket) {
 		if (basket.length == 0) {
 			return "0";
 		} else if (basket.length == 1) {
 			return BASE_PRICE;
 		} else {
-			bookStack = new HashMap<>();
+			BookStack bookStack = new BookStack();
 			for (int book : basket) {
-				addBook(book);
+				bookStack.addBook(book);
 			}
 
 			List<Integer> group;
@@ -32,17 +28,17 @@ public class PriceCalculator {
 				int maxBooks = 1;
 
 				group = new ArrayList<>();
-				for (int book : bookStack.keySet()) {
-					if (bookStack.get(book) == maxBooks) {
+				for (int book : bookStack.getDifferentBooks()) {
+					if (bookStack.getNumberOfCopies(book) == maxBooks) {
 						group.add(book);
-					} else if (bookStack.get(book) > maxBooks) {
+					} else if (bookStack.getNumberOfCopies(book) > maxBooks) {
 						group = new ArrayList<>();
 						group.add(book);
-						maxBooks = bookStack.get(book);
+						maxBooks = bookStack.getNumberOfCopies(book);
 					}
 				}
 
-				removeBooks(group);
+				bookStack.removeBooks(group);
 
 				groups.add(group);
 			}
@@ -151,25 +147,5 @@ public class PriceCalculator {
 		sb.setLength(sb.length() - 3);
 
 		return sb.toString();
-	}
-
-	private void addBook(int book) {
-		Integer numBooks = bookStack.get(book);
-
-		if (numBooks == null) {
-			bookStack.put(book, 1);
-		} else {
-			bookStack.put(book, numBooks.intValue() + 1);
-		}
-	}
-
-	private void removeBooks(List<Integer> group) {
-		for (int book : group) {
-			if (bookStack.get(book) == 1) {
-				bookStack.remove(book);
-			} else {
-				bookStack.put(book, bookStack.get(book) - 1);
-			}
-		}
 	}
 }
