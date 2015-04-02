@@ -18,9 +18,7 @@ public class PriceCalculator {
 			return BASE_PRICE;
 		} else {
 			BookStack bookStack = new BookStack();
-			for (int book : basket) {
-				bookStack.addBook(book);
-			}
+			bookStack.addBooks(basket);
 
 			List<Integer> group;
 			List<List<Integer>> groups = new ArrayList<>();

@@ -13,6 +13,12 @@ public class BookStack {
 		stack = new HashMap<>();
 	}
 
+	public void addBooks(int[] books) {
+		for (int book : books) {
+			addBook(book);
+		}
+	}
+
 	public void addBook(int book) {
 		Integer numBooks = stack.get(book);
 
