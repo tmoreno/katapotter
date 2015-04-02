@@ -22,93 +22,55 @@ public class BookGroup {
 
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		int numRepeats = 0;
+		int numberOfGroups = 0;
 
 		for (int i = 1; i <= 5; i++) {
-			numRepeats = 0;
+			numberOfGroups = numberOfGroupsWithNBooks(i);
 
-			for (List<Integer> group : groups) {
-				if (group.size() == i) {
-					numRepeats++;
-				}
-			}
-
-			if (numRepeats > 0) {
+			if (numberOfGroups > 0) {
 				switch (i) {
 				case 1:
-					if (numRepeats == 1) {
+					if (numberOfGroups == 1) {
 						sb.append("8");
 					} else {
-						sb.append("8 * " + numRepeats);
+						sb.append("8 * " + numberOfGroups);
 					}
 
 					break;
 
 				case 2:
-					if (groups.size() > 1) {
-						if (numRepeats > 1) {
-							sb.append(numRepeats + " * (");
-						} else {
-							sb.append("(");
-						}
-					}
+					sb.append(leftBracket(numberOfGroups));
 
 					sb.append("8 * 2 * " + DISCOUNT_5_PERCENT);
 
-					if (groups.size() > 1) {
-						sb.append(")");
-					}
+					sb.append(rightBracket());
 
 					break;
 
 				case 3:
-					if (groups.size() > 1) {
-						if (numRepeats > 1) {
-							sb.append(numRepeats + " * (");
-						} else {
-							sb.append("(");
-						}
-					}
+					sb.append(leftBracket(numberOfGroups));
 
 					sb.append("8 * 3 * " + DISCOUNT_10_PERCENT);
 
-					if (groups.size() > 1) {
-						sb.append(")");
-					}
+					sb.append(rightBracket());
 
 					break;
 
 				case 4:
-					if (groups.size() > 1) {
-						if (numRepeats > 1) {
-							sb.append(numRepeats + " * (");
-						} else {
-							sb.append("(");
-						}
-					}
+					sb.append(leftBracket(numberOfGroups));
 
 					sb.append("8 * 4 * " + DISCOUNT_20_PERCENT);
 
-					if (groups.size() > 1) {
-						sb.append(")");
-					}
+					sb.append(rightBracket());
 
 					break;
 
 				case 5:
-					if (groups.size() > 1) {
-						if (numRepeats > 1) {
-							sb.append(numRepeats + " * (");
-						} else {
-							sb.append("(");
-						}
-					}
+					sb.append(leftBracket(numberOfGroups));
 
 					sb.append("8 * 5 * " + DISCOUNT_25_PERCENT);
 
-					if (groups.size() > 1) {
-						sb.append(")");
-					}
+					sb.append(rightBracket());
 
 					break;
 				}
@@ -120,5 +82,37 @@ public class BookGroup {
 		sb.setLength(sb.length() - 3);
 
 		return sb.toString();
+	}
+
+	private String leftBracket(int numberOfGroups) {
+		if (groups.size() > 1) {
+			if (numberOfGroups > 1) {
+				return numberOfGroups + " * (";
+			} else {
+				return "(";
+			}
+		} else {
+			return "";
+		}
+	}
+
+	private String rightBracket() {
+		if (groups.size() > 1) {
+			return ")";
+		} else {
+			return "";
+		}
+	}
+
+	private int numberOfGroupsWithNBooks(int n) {
+		int numberOfGroupsWithNBooks = 0;
+
+		for (List<Integer> books : groups) {
+			if (books.size() == n) {
+				numberOfGroupsWithNBooks++;
+			}
+		}
+
+		return numberOfGroupsWithNBooks;
 	}
 }
