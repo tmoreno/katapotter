@@ -33,7 +33,7 @@ public class SeveralDiscountsTest {
 	}
 
 	@Test
-	public void applyTwoDiscountsWithOrder() {
+	public void applyTwoDifferentDiscounts() {
 		basket = new int[] { 0, 0, 1, 2, 2, 3 };
 
 		String price = calculator.calculate(basket);
