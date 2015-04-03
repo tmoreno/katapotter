@@ -11,26 +11,25 @@ public class PriceCalculator {
 	public String calculate(int[] basket) {
 		if (basket.length == 0) {
 			return "0";
-		} else if (basket.length == 1) {
+		}
+		else if (basket.length == 1) {
 			return Discount.BASE_PRIZE + "";
-		} else {
-			BookGroup groupsWithMoreBooksStrategy = groupByStrategy(basket,
-					new GroupingWithMoreBooksStrategy());
+		}
+		else {
+			BookGroup groupsWithMoreBooksStrategy = groupByStrategy(basket, new GroupingWithMoreBooksStrategy());
 
-			BookGroup groupsWithMoreGroupsStrategy = groupByStrategy(basket,
-					new GroupingWithMoreGroupsStrategy());
+			BookGroup groupsWithMoreGroupsStrategy = groupByStrategy(basket, new GroupingWithMoreGroupsStrategy());
 
-			if (groupsWithMoreBooksStrategy.getPrice() < groupsWithMoreGroupsStrategy
-					.getPrice()) {
+			if (groupsWithMoreBooksStrategy.getPrice() < groupsWithMoreGroupsStrategy.getPrice()) {
 				return groupsWithMoreBooksStrategy.toString();
-			} else {
+			}
+			else {
 				return groupsWithMoreGroupsStrategy.toString();
 			}
 		}
 	}
 
-	private BookGroup groupByStrategy(int[] basket,
-			GroupingStrategy groupStrategy) {
+	private BookGroup groupByStrategy(int[] basket, GroupingStrategy groupStrategy) {
 		BookCopies bookCopies = new BookCopies(groupStrategy);
 		bookCopies.addCopies(basket);
 

@@ -16,7 +16,8 @@ public class GroupingWithMoreBooksStrategy implements GroupingStrategy {
 
 			if (numberOfCopies == maxCopies) {
 				books.add(book);
-			} else if (numberOfCopies > maxCopies) {
+			}
+			else if (numberOfCopies > maxCopies) {
 				books = new ArrayList<>();
 				books.add(book);
 				maxCopies = numberOfCopies;

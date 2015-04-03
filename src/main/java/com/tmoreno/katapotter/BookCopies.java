@@ -32,7 +32,8 @@ public class BookCopies {
 
 		if (numBooks == null) {
 			copies.put(book, 1);
-		} else {
+		}
+		else {
 			copies.put(book, numBooks.intValue() + 1);
 		}
 	}
@@ -41,7 +42,8 @@ public class BookCopies {
 		for (int book : books) {
 			if (copies.get(book) == 1) {
 				copies.remove(book);
-			} else {
+			}
+			else {
 				copies.put(book, copies.get(book) - 1);
 			}
 		}
