@@ -9,7 +9,7 @@ public class GroupingWithMoreGroupsStrategy implements GroupingStrategy {
 	@Override
 	public List<Integer> getGroupedBooks(Map<Integer, Integer> copies) {
 		int maxCopies = 1;
-		boolean a = true;
+		boolean onlyOneBookWithLessCopies = true;
 		List<Integer> books = new ArrayList<>();
 
 		for (int book : copies.keySet()) {
@@ -23,9 +23,9 @@ public class GroupingWithMoreGroupsStrategy implements GroupingStrategy {
 				books.add(book);
 				maxCopies = numberOfCopies;
 			}
-			else if (a) {
+			else if (onlyOneBookWithLessCopies) {
 				books.add(book);
-				a = false;
+				onlyOneBookWithLessCopies = false;
 			}
 		}
 

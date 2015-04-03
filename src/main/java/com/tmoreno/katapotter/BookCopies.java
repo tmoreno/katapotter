@@ -49,7 +49,7 @@ public class BookCopies {
 		}
 	}
 
-	public List<Integer> getBooksWithMaxCopies() {
+	public List<Integer> getGroupedBooks() {
 		return groupStrategy.getGroupedBooks(copies);
 	}
 }

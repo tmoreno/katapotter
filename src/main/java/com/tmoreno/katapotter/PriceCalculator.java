@@ -37,7 +37,7 @@ public class PriceCalculator {
 		BookGroup groups = new BookGroup();
 
 		while (!bookCopies.isEmpty()) {
-			books = bookCopies.getBooksWithMaxCopies();
+			books = bookCopies.getGroupedBooks();
 
 			bookCopies.removeOneCopyOfEachBook(books);
 
