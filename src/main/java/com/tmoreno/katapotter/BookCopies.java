@@ -1,16 +1,19 @@
 package com.tmoreno.katapotter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+
+import com.tmoreno.katapotter.strategy.GroupingStrategy;
 
 public class BookCopies {
 
 	private Map<Integer, Integer> copies;
+	private GroupingStrategy groupStrategy;
 
-	public BookCopies() {
+	public BookCopies(GroupingStrategy groupStrategy) {
+		this.groupStrategy = groupStrategy;
+
 		copies = new HashMap<>();
 	}
 
@@ -45,29 +48,6 @@ public class BookCopies {
 	}
 
 	public List<Integer> getBooksWithMaxCopies() {
-		int maxCopies = 1;
-		List<Integer> books = new ArrayList<>();
-
-		for (int book : getDifferentBooks()) {
-			int numberOfCopies = getNumberOfCopies(book);
-
-			if (numberOfCopies == maxCopies) {
-				books.add(book);
-			} else if (numberOfCopies > maxCopies) {
-				books = new ArrayList<>();
-				books.add(book);
-				maxCopies = numberOfCopies;
-			}
-		}
-
-		return books;
-	}
-
-	private Set<Integer> getDifferentBooks() {
-		return copies.keySet();
-	}
-
-	private Integer getNumberOfCopies(Integer book) {
-		return copies.get(book);
+		return groupStrategy.getGroupedBooks(copies);
 	}
 }
